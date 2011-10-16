@@ -350,7 +350,7 @@ switch a bs = Lift $ do
   return $ phi cs
 
 phi :: Typed a => [(V a, Label)] -> Term a
-phi xs = with_local $ \(v :: V a) ->
+phi (xs :: [(V a, Label)]) = with_local $ \(v :: V a) ->
   when (not $ is_tyunit $ typeof (unused :: a)) $
     out 2 [ vof v, "= phi", tof v, commaSep $ map phi_arg xs ]
 
